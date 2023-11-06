@@ -1,0 +1,21 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Meson Debug Crepe",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/${config:mesonbuild.buildFolder}/crepe.exe",
+            "envFile": "${workspaceFolder}/${config:mesonbuild.buildFolder}/meson-vscode.env",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/${config:mesonbuild.buildFolder}",
+            "environment": [],
+            "console": "externalTerminal"
+        }
+
+    ]
+}

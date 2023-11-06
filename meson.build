@@ -9,5 +9,3 @@ tests_src = [
 ]  
 tests = executable('crepe-tests', tests_src, dependencies: [gtest_dep])    
 test('GTest Unit Tests', tests)
-
-	   
