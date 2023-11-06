@@ -4,27 +4,22 @@
 #include <fstream>
 #include <vector>
 #include "useful.h"
-
-using namespace std;
+#include <stdexcept>
 
 int main(int argc, char* argv[]) {
-  // handle wrong amount of arguments
   if (argc != 3) {
-    cout << "Need two arguments (pattern then file to search in)" << endl;
+    std::cout << "Need two arguments (pattern then file to search in)" << std::endl;
     return 1;
   }
-  // open the file
-  ifstream search_file(argv[2]);
-  if (!search_file) {
-    cout << "File does not exist!" << endl;
+  std::vector<std::string> lines {};
+  try {
+    lines = readFile(argv[2]);
+  } catch (const std::invalid_argument& e) {
+    std::cout << e.what() << std::endl;
     return 1;
   }
-  // read file in
-  string lines;
-  // split to lines
-  // create regex pattern
-  // search all lines for pattern and add lines to found vector
-  // print found vector
+  auto found = searchForPattern(lines, argv[1]);
+  std::cout << formatVec(found) << std::endl;
   return 0;
 }
 
