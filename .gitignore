@@ -1,1 +1,5 @@
-build
+build*
+subprojects
+.cache
+.vscode
+CppProperties.json
