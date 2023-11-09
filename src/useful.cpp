@@ -1,6 +1,6 @@
 #include "src/useful.hpp"
 
-std::vector<std::string> useful::splitStr(std::string input, char split_char) {
+std::vector<std::string> useful::splitStr(std::string input, char split_char) noexcept {
   if (input.length() == 1 && input[0] == split_char) return {}; // if the string is just the split_char then the vector will be empty
   size_t pos {0}, split_index {0};
   std::vector<std::string> split_vec {};
@@ -19,7 +19,7 @@ std::vector<std::string> useful::splitStr(std::string input, char split_char) {
   return split_vec;
 }
 
-std::string useful::formatVec(std::vector<std::string> &vec, std::string join_str) {
+std::string useful::formatVec(std::vector<std::string> &vec, std::string join_str) noexcept {
   std::string output {""};
   for (size_t i = 0; i < vec.size(); i++) {
     if (i != 0) {
@@ -32,11 +32,10 @@ std::string useful::formatVec(std::vector<std::string> &vec, std::string join_st
   return output;
 }
 
-std::vector<std::string> useful::readFile(std::string file_path) {
+Result<std::vector<std::string>> useful::readFile(std::string file_path) noexcept {
   std::ifstream file(file_path);
   if (!file) {
-    std::string error_msg = fmt::format("File {0} does not exist", file_path);
-    throw std::invalid_argument(error_msg);
+    return std::unexpected(FileNotFound(file_path));
   }
   std::vector<std::string> lines;
   std::string buf;
@@ -46,7 +45,7 @@ std::vector<std::string> useful::readFile(std::string file_path) {
   return lines;
 }
 
-std::vector<std::string> useful::searchForPattern(std::vector<std::string> &lines, std::string pattern_str) {
+std::vector<std::string> useful::searchForPattern(std::vector<std::string> &lines, std::string pattern_str) noexcept {
   std::regex pattern(pattern_str);
   std::vector<std::string> found {};
   for (auto line : lines) {

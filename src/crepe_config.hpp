@@ -5,18 +5,16 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
-// #include <format>
-#include "fmt/core.h"
+#include <format>
+// #include "fmt/core.h"
+#include <expected>
+#include "error.hpp"
 
 namespace crepe_config {
     class CrepeConfig {
         public:
-        /* Construct a CrepeConfig from the arguments passed to main*/
         CrepeConfig() = default;
-        CrepeConfig(std::vector<std::string> args);
-
-        /* Parse the vector of args and store them */
-        void parse(std::vector<std::string> args);
+        CrepeConfig(std::vector<std::string> &args);
 
         /* get the pattern*/
         std::string getPattern();
@@ -28,6 +26,15 @@ namespace crepe_config {
         std::string m_pattern;
         bool ignore_case;
         void setPattern(std::string ptn);
-        void setSearchFile(std::string path);
+        Result<void> setSearchFile(std::string path);
+        
+        /* Parse the vector of args and store them */
+        void parse(std::vector<std::string> &args);
     };
+
+     enum class config_error {
+        invalid_arguments
+    };
+
+    Result<CrepeConfig> create(std::vector<std::string> &args);
 }
