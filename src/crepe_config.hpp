@@ -5,8 +5,8 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
-#include <format>
-// #include "fmt/core.h"
+// #include <format>
+#include "fmt/core.h"
 
 namespace crepe_config {
     class CrepeConfig {
@@ -24,8 +24,8 @@ namespace crepe_config {
         std::string getSearchFile();
 
         private:
-        std::string search_file;
-        std::string pattern;
+        std::string m_search_file;
+        std::string m_pattern;
         bool ignore_case;
         void setPattern(std::string ptn);
         void setSearchFile(std::string path);

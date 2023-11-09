@@ -21,8 +21,3 @@ int main(int argc, char* argv[]) {
   std::cout << useful::formatVec(found) << std::endl;
   return 0;
 }
-
-void derp() {
-  auto x = std::vector<std::string>{"hello"};
-}
-

@@ -35,7 +35,7 @@ std::string useful::formatVec(std::vector<std::string> &vec, std::string join_st
 std::vector<std::string> useful::readFile(std::string file_path) {
   std::ifstream file(file_path);
   if (!file) {
-    std::string error_msg = std::format("File {0} does not exist", file_path);
+    std::string error_msg = fmt::format("File {0} does not exist", file_path);
     throw std::invalid_argument(error_msg);
   }
   std::vector<std::string> lines;
